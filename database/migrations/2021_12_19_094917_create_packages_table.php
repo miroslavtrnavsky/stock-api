@@ -20,15 +20,9 @@ class CreatePackagesTable extends Migration
             $table->foreignId('stock_id')->constrained();
             $table->unsignedInteger('code')->unique();
             $table->string('position');
-            $table->string('state');
+            $table->enum('state', enum_to_array(PackageStateEnum::cases()));
             $table->timestamps();
         });
-
-        DB::statement("
-            ALTER TABLE packages
-            ADD CONSTRAINT check_state
-            CHECK (state IN (" . enum_to_string(PackageStateEnum::cases()) . "));
-        ");
     }
 
     /**

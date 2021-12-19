@@ -11,7 +11,7 @@ use Repositories\StockRepository;
 class StockController extends Controller
 {
     public function __construct(
-        private StockRepository $stockRepository
+        private readonly StockRepository $stockRepository
     ) { }
 
     public function index(): Collection
