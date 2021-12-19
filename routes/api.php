@@ -18,10 +18,11 @@ use Http\Controllers\Api\AuthController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/change-password', [AuthController::class, 'changePassword']);
-Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::group(['middleware' => ['auth:sanctum'], 'namespace' => 'api'], function () {
+    Route::post('/reset-password', [AuthController::class, 'changePassword']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+
     Route::group(['prefix' => 'stocks'], function () {
         Route::get('/', [StockController::class, 'index']);
         Route::post('/', [StockController::class, 'create']);

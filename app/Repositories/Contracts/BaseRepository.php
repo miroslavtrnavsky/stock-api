@@ -50,7 +50,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $query->get($columns);
     }
 
-    public function find(int $id, array $columns = ['*']): Model
+    public function find(int $id, array $columns = ['*']): ?Model
     {
         return $this->getQueryBuilder()->find($id);
     }

@@ -14,7 +14,7 @@ interface BaseRepositoryInterface
         int $limit = null
     ): Collection;
 
-    public function find(int $id, array $columns = ['*']): Model;
+    public function find(int $id, array $columns = ['*']): ?Model;
 
     public function create(array $attributes): Model;
 

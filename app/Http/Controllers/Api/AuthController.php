@@ -63,7 +63,7 @@ class AuthController extends Controller
     {
         $data = $request->getModifiedData();
 
-        $user = $this->userRepository->find($data['id']) ?? auth()->user();
+        $user = $this->userRepository->find(intval($data['id'])) ?? auth()->user();
 
         $user = $user->update([
             'password' => $data['password']
@@ -71,6 +71,7 @@ class AuthController extends Controller
 
         return response()->json([
             'user' => $user,
+            'message' => 'Password changed'
         ]);
     }
 }

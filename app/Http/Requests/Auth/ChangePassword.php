@@ -15,7 +15,8 @@ class ChangePassword extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.user.update');
+
+        return true; //Gate::allows('admin.user.update');
     }
 
     /**
@@ -43,6 +44,10 @@ class ChangePassword extends FormRequest
 
         if (! empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
+        }
+
+        if(empty($data['id'])) {
+            $data['id'] = null;
         }
 
         return $data;
