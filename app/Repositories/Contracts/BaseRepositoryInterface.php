@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 interface BaseRepositoryInterface
 {
-    public function getAll(array $columns = ['*'], string $orderBy = null, string $order = "desc", int $limit = null): Collection;
+    public function getAll(
+        array $columns = ['*'],
+        string $orderBy = null,
+        string $order = "desc",
+        int $limit = null
+    ): Collection;
 
     public function find(int $id, array $columns = ['*']): Model;
 
