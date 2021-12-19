@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use Http\Controllers\Api\PackageController;
+use Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::group(['prefix' => 'stocks'], function () {
+        Route::get('/', [StockController::class, 'index']);
+        Route::post('/', [StockController::class, 'create']);
+        Route::post('/{id}', [StockController::class, 'update']);
+        Route::get('/{id}', [StockController::class, 'find']);
+        Route::delete('/{id}', [StockController::class, 'find']);
+    });
+
+    Route::group(['prefix' => 'packages'], function () {
+        Route::get('/', [PackageController::class, 'index']);
+        Route::post('/', [PackageController::class, 'create']);
+        Route::post('/{id}', [PackageController::class, 'update']);
+        Route::get('/{id}', [PackageController::class, 'find']);
+        Route::delete('/{id}', [PackageController::class, 'find']);
+    });
 });
