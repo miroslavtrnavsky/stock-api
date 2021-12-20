@@ -2,12 +2,11 @@
 
 namespace App\Events;
 
-use App\Enums\PackageStateEnum;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UpdatePackageStateEvent
+class IndexPackageEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -18,8 +17,6 @@ class UpdatePackageStateEvent
      */
     public function __construct(
         public readonly string $url,
-        public readonly int $id,
-        public readonly PackageStateEnum $state,
         public readonly string $token
     ) { }
 }

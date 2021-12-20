@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\CreatePackageEvent;
 use App\Services\Contracts\ApiServiceInterface;
+use App\Services\PackageApiClient;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -17,7 +18,6 @@ class CreatePackage
      */
     public function handle(CreatePackageEvent $event)
     {
-        dd(1);
-       app(ApiServiceInterface::class)->create($event->url, $event->data);
+        app(ApiServiceInterface::class)->create($event->url, $event->data, $event->token);
     }
 }

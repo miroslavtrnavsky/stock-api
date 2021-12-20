@@ -22,6 +22,7 @@ class UpdatePackagePositionEvent
     public function __construct(
         public readonly string $url,
         public readonly int $id,
-        public readonly string $position
+        public readonly string $position,
+        public readonly string $token
     ) { }
 }

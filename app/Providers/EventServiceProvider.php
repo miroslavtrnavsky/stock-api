@@ -47,6 +47,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Event::listen(CreatePackageEvent::class, [CreatePackage::class, 'handle']);
     }
 }

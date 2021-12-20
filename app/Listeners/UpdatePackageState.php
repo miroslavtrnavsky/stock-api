@@ -17,6 +17,6 @@ class UpdatePackageState
      */
     public function handle(UpdatePackageStateEvent $event)
     {
-        app(ApiServiceInterface::class)->update($event->url, $event->id, $event->state);
+        app(ApiServiceInterface::class)->update($event->url, $event->id, $event->state, $event->token);
     }
 }

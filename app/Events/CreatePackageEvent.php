@@ -21,8 +21,7 @@ class CreatePackageEvent
      */
     public function __construct(
         public readonly string $url,
-        public readonly array $data
-    ) {
-//        dd('event fired');
-    }
+        public readonly array $data,
+        public readonly string $token
+    ) { }
 }

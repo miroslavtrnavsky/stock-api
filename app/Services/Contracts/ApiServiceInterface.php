@@ -2,15 +2,16 @@
 
 namespace App\Services\Contracts;
 
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\Response;
 
 interface ApiServiceInterface
 {
-    public function getAll(string $url): ResponseInterface;
+    public function getAll(string $url, string $token): PromiseInterface|Response;
 
-    public function create(string $url, array $data): ResponseInterface;
+    public function create(string $url, array $data, string $token): PromiseInterface|Response;
 
-    public function update(string $url, int $id, array $data): ResponseInterface;
+    public function update(string $url, int $id, array $data, string $token): PromiseInterface|Response;
 
-    public function delete(string $url, int $id): ResponseInterface;
+    public function delete(string $url, int $id, string $token): PromiseInterface|Response;
 }

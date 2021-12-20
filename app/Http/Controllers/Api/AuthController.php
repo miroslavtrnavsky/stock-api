@@ -22,11 +22,8 @@ class AuthController extends Controller
         /** @var User $user */
         $user = $this->userRepository->create($request->getModifiedData());
 
-//        $token = $user->createToken('authtoken')->plainTextToken;
-
         return response()->json([
             'user' => $user,
-//            'token' => $token
         ], 201);
     }
 

@@ -25,7 +25,7 @@ class PackageController extends Controller
 
     public function store(StorePackage $request): Model
     {
-        $package = $this->packageRepository->create($request->all());
+        $package = $this->packageRepository->create($request->validated());
 
         if ($package) {
             app(NotifyPackageCreated::class)->execute($package);
@@ -36,7 +36,7 @@ class PackageController extends Controller
 
     public function update(UpdatePackage $request, int $id): Model
     {
-        return $this->packageRepository->update($id, $request->all());
+        return $this->packageRepository->update($id, $request->validated());
     }
 
     public function show(int $id): Model

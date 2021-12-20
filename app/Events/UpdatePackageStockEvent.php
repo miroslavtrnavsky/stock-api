@@ -22,6 +22,7 @@ class UpdatePackageStockEvent
     public function __construct(
         public readonly string $url,
         public readonly int $id,
-        public readonly int $stockId
+        public readonly int $stockId,
+        public readonly string $token
     ) { }
 }
