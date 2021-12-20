@@ -3,6 +3,7 @@
 use Http\Controllers\Api\PackageController;
 use Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
+use Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum'], 'namespace' => 'api'], function () {
+    Route::post('/reset-password', [AuthController::class, 'changePassword']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+
     Route::group(['prefix' => 'stocks'], function () {
         Route::get('/', [StockController::class, 'index']);
         Route::post('/', [StockController::class, 'create']);
