@@ -29,7 +29,7 @@ class PackageCreated extends Notification
      */
     public function via(mixed $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**

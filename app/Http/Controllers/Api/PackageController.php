@@ -19,7 +19,7 @@ class PackageController extends Controller
 
     public function index(IndexPackage $request): Collection
     {
-        return $this->packageRepository->getAll();
+        return $this->packageRepository->getAll(['*'], 'state');
     }
 
     public function store(StorePackage $request): Model
