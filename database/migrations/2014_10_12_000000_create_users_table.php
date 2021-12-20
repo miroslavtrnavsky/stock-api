@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('code')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', enum_to_array(UserRoleEnum::cases()));
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
