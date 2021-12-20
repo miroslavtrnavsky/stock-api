@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\CreatePackageEvent;
+use App\Events\UpdatePackagePositionEvent;
+use App\Events\UpdatePackageStateEvent;
+use App\Events\UpdatePackageStockEvent;
+use App\Listeners\CreatePackage;
+use App\Listeners\UpdatePackagePosition;
+use App\Listeners\UpdatePackageState;
+use App\Listeners\UpdatePackageStock;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +26,18 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        CreatePackageEvent::class => [
+            CreatePackage::class
+        ],
+        UpdatePackageStateEvent::class => [
+            UpdatePackageState::class
+        ],
+        UpdatePackagePositionEvent::class => [
+            UpdatePackagePosition::class
+        ],
+        UpdatePackageStockEvent::class => [
+            UpdatePackageStock::class
+        ]
     ];
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\PackageStateEnum;
 use App\Services\Contracts\ApiService;
 use App\Services\Contracts\ApiServiceInterface;
 use GuzzleHttp\Exception\GuzzleException;
@@ -11,45 +12,37 @@ class PackageApiClient extends ApiService implements ApiServiceInterface
 {
     /**
      * @param string $url
+     * @param int $id
+     * @param string $newPosition
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function getAll(string $url): ResponseInterface
+    public function updatePackagePosition(string $url, int $id, string $newPosition): ResponseInterface
     {
-        return $this->getCall($url);
-    }
-
-    /**
-     * @param string $url
-     * @param array $data
-     * @return ResponseInterface
-     * @throws GuzzleException
-     */
-    public function create(string $url, array $data): ResponseInterface
-    {
-        return $this->postCall($url, $data);
+        return $this->update($url, $id, ['position' => $newPosition]);
     }
 
     /**
      * @param string $url
      * @param int $id
-     * @param array $data
+     * @param PackageStateEnum $newState
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function update(string $url, int $id, array $data): ResponseInterface
+    public function updatePackageStatus(string $url, int $id, PackageStateEnum $newState): ResponseInterface
     {
-        return $this->postCall($url . DIRECTORY_SEPARATOR . $id, $data);
+        return $this->update($url, $id, ['state' => $newState->value]);
     }
 
     /**
      * @param string $url
      * @param int $id
+     * @param int $newStockId
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function delete(string $url, int $id): ResponseInterface
+    public function updatePackageStock(string $url, int $id, int $newStockId): ResponseInterface
     {
-        return $this->deleteCall($url . DIRECTORY_SEPARATOR . $id);
+        return $this->update($url, $id, ['stock_id' => $newStockId]);
     }
 }
