@@ -16,10 +16,10 @@ use Http\Controllers\Api\AuthController;
 |
 */
 
-Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum'], 'namespace' => 'api'], function () {
+    Route::post('/register', [AuthController::class, 'register']);
     Route::post('/reset-password', [AuthController::class, 'changePassword']);
     Route::get('/logout', [AuthController::class, 'logout']);
 

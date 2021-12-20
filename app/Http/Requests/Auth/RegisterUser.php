@@ -18,7 +18,7 @@ class RegisterUser extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; //Gate::allows('admin.user.create');
+        return Gate::allows('user.create');
     }
 
     /**

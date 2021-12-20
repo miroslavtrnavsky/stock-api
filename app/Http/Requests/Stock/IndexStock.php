@@ -1,11 +1,11 @@
 <?php
 
-namespace Http\Requests\Package;
+namespace Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class StorePackage extends FormRequest
+class IndexStock extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class StorePackage extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('package.create');
+        return Gate::allows('stock.read');
     }
 
     /**
@@ -25,7 +25,7 @@ class StorePackage extends FormRequest
     public function rules(): array
     {
         return [
-                //TODO
+            //TODO
         ];
     }
 }

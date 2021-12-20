@@ -2,7 +2,7 @@
 
 namespace Repositories;
 
-use Models\Package;
+use App\Models\Package;
 use Repositories\Contracts\BaseRepository;
 
 final class PackageRepository extends BaseRepository
