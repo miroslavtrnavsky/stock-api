@@ -3,6 +3,9 @@
 namespace Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Http\Requests\Stock\DeleteStock;
+use Http\Requests\Stock\StoreStock;
+use Http\Requests\Stock\UpdateStock;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -19,14 +22,14 @@ class StockController extends Controller
         return $this->stockRepository->getAll();
     }
 
-    public function store(Request $request): Model
+    public function store(StoreStock $request): Model
     {
         return $this->stockRepository->create($request->all());
     }
 
-    public function update(int $id, Request $request): Model
+    public function update(UpdateStock $updateStock, int $id): Model
     {
-        return $this->stockRepository->update($id, $request->all());
+        return $this->stockRepository->update($id, $updateStock->all());
     }
 
     public function find(int $id): Model
@@ -34,7 +37,7 @@ class StockController extends Controller
         return $this->stockRepository->find($id);
     }
 
-    public function delete(int $id): bool
+    public function delete(DeleteStock $deleteStock, int $id): bool
     {
         return $this->stockRepository->delete($id);
     }

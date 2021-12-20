@@ -2,7 +2,7 @@
 
 namespace Repositories;
 
-use Models\Stock;
+use App\Models\Stock;
 use Repositories\Contracts\BaseRepository;
 
 final class StockRepository extends BaseRepository

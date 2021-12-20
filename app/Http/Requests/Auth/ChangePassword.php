@@ -16,7 +16,7 @@ class ChangePassword extends FormRequest
     public function authorize(): bool
     {
 
-        return true; //Gate::allows('admin.user.update');
+        return Gate::allows('user.update') || auth()->user()->id === $this->get('id');
     }
 
     /**

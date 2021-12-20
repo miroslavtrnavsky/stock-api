@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Enum;
 
-class StorePackage extends FormRequest
+class UpdatePackage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class StorePackage extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('package.create');
+        return Gate::allows('package.update');
     }
 
     /**
@@ -27,10 +27,10 @@ class StorePackage extends FormRequest
     public function rules(): array
     {
         return [
-            'stock_id' => ['required', 'numeric', 'exists:stocks,id'],
-            'code' => ['required', 'numeric', 'unique:packages'],
-            'position' => ['required', 'string'],
-            'state' => ['required', new Enum(PackageStateEnum::class)]
+            'stock_id' => ['sometimes', 'required', 'numeric', 'exists:stocks,id'],
+            'code' => ['sometimes', 'required', 'numeric', 'unique:packages'],
+            'position' => ['sometimes', 'required', 'string'],
+            'state' => ['sometimes', 'required', new Enum(PackageStateEnum::class)]
         ];
     }
 }

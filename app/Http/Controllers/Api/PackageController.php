@@ -3,9 +3,12 @@
 namespace Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Http\Requests\Package\DeletePackage;
+use Http\Requests\Package\IndexPackage;
+use Http\Requests\Package\StorePackage;
+use Http\Requests\Package\UpdatePackage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Repositories\PackageRepository;
 
 class PackageController extends Controller
@@ -14,17 +17,17 @@ class PackageController extends Controller
         private readonly PackageRepository $packageRepository
     ) { }
 
-    public function index(): Collection
+    public function index(IndexPackage $request): Collection
     {
         return $this->packageRepository->getAll();
     }
 
-    public function store(Request $request): Model
+    public function store(StorePackage $request): Model
     {
         return $this->packageRepository->create($request->all());
     }
 
-    public function update(int $id, Request $request): Model
+    public function update(UpdatePackage $request, int $id): Model
     {
         return $this->packageRepository->update($id, $request->all());
     }
@@ -34,7 +37,7 @@ class PackageController extends Controller
         return $this->packageRepository->find($id);
     }
 
-    public function delete(int $id): bool
+    public function delete(DeletePackage $request, int $id): bool
     {
         return $this->packageRepository->delete($id);
     }
