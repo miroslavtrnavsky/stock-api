@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Http\Requests\Stock\DeleteStock;

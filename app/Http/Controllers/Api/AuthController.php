@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -9,7 +9,7 @@ use Http\Requests\Auth\LoginUser;
 use Http\Requests\Auth\RegisterUser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
-use Repositories\UserRepository;
+use App\Repositories\UserRepository;
 
 class AuthController extends Controller
 {

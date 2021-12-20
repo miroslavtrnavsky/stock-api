@@ -1,9 +1,9 @@
 <?php
 
-use Http\Controllers\Api\PackageController;
-use Http\Controllers\Api\StockController;
+use App\Http\Controllers\Api\PackageController;
+use App\Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
-use Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +18,7 @@ use Http\Controllers\Api\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::group(['middleware' => ['auth:sanctum'], 'namespace' => 'api'], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/reset-password', [AuthController::class, 'changePassword']);
     Route::get('/logout', [AuthController::class, 'logout']);
