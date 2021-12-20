@@ -30,6 +30,6 @@ class PackageWaitingMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('view.mail.package-waiting', [$package => $this->package]);
     }
 }

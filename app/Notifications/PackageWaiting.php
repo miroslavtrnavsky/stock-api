@@ -7,7 +7,6 @@ use App\Models\Package;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class PackageWaiting extends Notification
@@ -38,15 +37,14 @@ class PackageWaiting extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param mixed $notifiable
+     * @return PackageWaitingMail
      */
-    public function toMail(mixed $notifiable): MailMessage
+    public function toMail(mixed $notifiable): PackageWaitingMail
     {
-        return (new PackageWaitingMail($this->user, $this->package))->send()
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new PackageWaitingMail($this->user, $this->package))
+            ->to($this->user->email)
+            ->subject(__('[STOCK]: Package is waiting over 24h'));
     }
 
     /**

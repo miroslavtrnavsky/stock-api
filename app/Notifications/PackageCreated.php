@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Mail\PackageCreatedMail;
 use App\Models\Package;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -37,15 +38,14 @@ class PackageCreated extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param mixed $notifiable
+     * @return PackageCreatedMail
      */
-    public function toMail(mixed $notifiable): MailMessage
+    public function toMail(mixed $notifiable): PackageCreatedMail
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new PackageCreatedMail($this->user, $this->package))
+            ->to($this->user->email)
+            ->subject(__('[STOCK]: A new package was created'));
     }
 
     /**

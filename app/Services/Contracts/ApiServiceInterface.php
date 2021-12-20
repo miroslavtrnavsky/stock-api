@@ -2,16 +2,15 @@
 
 namespace App\Services\Contracts;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Psr\Http\Message\ResponseInterface;
 
 interface ApiServiceInterface
 {
-    function create(array $data): Model;
+    public function getAll(string $url): ResponseInterface;
 
-    public  function update(int $id, array $data): Model;
+    public function create(string $url, array $data): ResponseInterface;
 
-    public function delete($id): bool;
+    public function update(string $url, int $id, array $data): ResponseInterface;
 
-    public function getAll($filter): Collection;
+    public function delete(string $url, int $id): ResponseInterface;
 }
