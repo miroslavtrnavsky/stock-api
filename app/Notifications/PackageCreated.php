@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Models\Package;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -16,10 +18,10 @@ class PackageCreated extends Notification
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        private readonly User $user,
+        private readonly Package $package
+    ) { }
 
     /**
      * Get the notification's delivery channels.
@@ -55,7 +57,9 @@ class PackageCreated extends Notification
     public function toArray(mixed $notifiable): array
     {
         return [
-            //
+            'code' => $this->package->code,
+            'position' => $this->package->position,
+            'state' => $this->package->state,
         ];
     }
 }

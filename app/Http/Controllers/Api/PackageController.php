@@ -2,6 +2,7 @@
 
 namespace Http\Controllers\Api;
 
+use App\Actions\NotifyPackageCreated;
 use App\Http\Controllers\Controller;
 use Http\Requests\Package\DeletePackage;
 use Http\Requests\Package\IndexPackage;
@@ -24,7 +25,13 @@ class PackageController extends Controller
 
     public function store(StorePackage $request): Model
     {
-        return $this->packageRepository->create($request->all());
+        $package = $this->packageRepository->create($request->all());
+
+        if ($package) {
+            app(NotifyPackageCreated::class)->execute($package);
+        }
+
+        return $package;
     }
 
     public function update(UpdatePackage $request, int $id): Model

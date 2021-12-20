@@ -18,14 +18,21 @@ class UsersTableSeeder extends Seeder
         /** @var User $admin */
         $admin = User::query()->create([
             'name' => 'Admin',
-            'email' => 'admin@wbpo.com',
+            'email' => 'admin@stock-api.com',
             'code' => 81472,
-            'password' => bcrypt('stockadmin')
+            'password' => bcrypt('admin')
         ]);
 
         $admin->assignRole(UserRoleEnum::ADMIN->value);
 
-        $users = User::factory(10)->create();
-        $users->each(fn (User $user) => $user->assignRole(UserRoleEnum::WAREHOUSEMAN->value));
+        /** @var User $wareHouseman */
+        $wareHouseman = User::query()->create([
+            'name' => 'Warehouseman',
+            'email' => 'warehouseman@stock-api.com',
+            'code' => 81400,
+            'password' => bcrypt('warehouseman')
+        ]);
+
+        $wareHouseman->assignRole(UserRoleEnum::WAREHOUSEMAN->value);
     }
 }

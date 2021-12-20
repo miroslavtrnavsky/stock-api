@@ -2,6 +2,9 @@
 
 namespace App\Notifications;
 
+use App\Mail\PackageWaitingMail;
+use App\Models\Package;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -16,10 +19,10 @@ class PackageWaiting extends Notification
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        private readonly User $user,
+        private readonly Package $package
+    ) { }
 
     /**
      * Get the notification's delivery channels.
@@ -40,7 +43,7 @@ class PackageWaiting extends Notification
      */
     public function toMail(mixed $notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new PackageWaitingMail($this->user, $this->package))->send()
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
@@ -55,7 +58,9 @@ class PackageWaiting extends Notification
     public function toArray(mixed $notifiable): array
     {
         return [
-            //
+            'code' => $this->package->code,
+            'position' => $this->package->position,
+            'state' => $this->package->state,
         ];
     }
 }
