@@ -8,8 +8,7 @@ use Http\Requests\Stock\StoreStock;
 use Http\Requests\Stock\UpdateStock;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Repositories\StockRepository;
+use App\Repositories\StockRepository;
 
 class StockController extends Controller
 {
@@ -32,12 +31,12 @@ class StockController extends Controller
         return $this->stockRepository->update($id, $updateStock->all());
     }
 
-    public function find(int $id): Model
+    public function show(int $id): Model
     {
         return $this->stockRepository->find($id);
     }
 
-    public function delete(DeleteStock $deleteStock, int $id): bool
+    public function destroy(DeleteStock $deleteStock, int $id): bool
     {
         return $this->stockRepository->delete($id);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Repositories\Contracts;
+namespace App\Repositories\Contracts;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;

@@ -10,7 +10,7 @@ use Http\Requests\Package\StorePackage;
 use Http\Requests\Package\UpdatePackage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Repositories\PackageRepository;
+use App\Repositories\PackageRepository;
 
 class PackageController extends Controller
 {
@@ -39,12 +39,12 @@ class PackageController extends Controller
         return $this->packageRepository->update($id, $request->all());
     }
 
-    public function find(int $id): Model
+    public function show(int $id): Model
     {
         return $this->packageRepository->find($id);
     }
 
-    public function delete(DeletePackage $request, int $id): bool
+    public function destroy(DeletePackage $request, int $id): bool
     {
         return $this->packageRepository->delete($id);
     }

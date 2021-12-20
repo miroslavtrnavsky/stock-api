@@ -1,9 +1,9 @@
 <?php
 
-namespace Repositories;
+namespace App\Repositories;
 
 use App\Models\Stock;
-use Repositories\Contracts\BaseRepository;
+use App\Repositories\Contracts\BaseRepository;
 
 final class StockRepository extends BaseRepository
 {
