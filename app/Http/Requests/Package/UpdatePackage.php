@@ -2,8 +2,10 @@
 
 namespace Http\Requests\Package;
 
+use App\Enums\PackageStateEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdatePackage extends FormRequest
 {
@@ -25,7 +27,10 @@ class UpdatePackage extends FormRequest
     public function rules(): array
     {
         return [
-            //TODO
+            'stock_id' => ['sometimes', 'required', 'numeric', 'exists:stocks,id'],
+            'code' => ['sometimes', 'required', 'numeric', 'unique:packages'],
+            'position' => ['sometimes', 'required', 'string'],
+            'state' => ['sometimes', 'required', new Enum(PackageStateEnum::class)]
         ];
     }
 }

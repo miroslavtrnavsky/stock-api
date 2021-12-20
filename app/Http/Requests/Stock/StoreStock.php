@@ -25,7 +25,12 @@ class StoreStock extends FormRequest
     public function rules(): array
     {
         return [
-            //TODO
+            'name' => ['required', 'string'],
+            'street' => ['required', 'string'],
+            'street_no' => ['required', 'string'],
+            'zip' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'type' => ['required', 'string']
         ];
     }
 }

@@ -25,7 +25,12 @@ class UpdateStock extends FormRequest
     public function rules(): array
     {
         return [
-            //TODO
+            'name' => ['sometimes', 'required', 'string'],
+            'street' => ['sometimes', 'required', 'string'],
+            'street_no' => ['sometimes', 'required', 'string'],
+            'zip' => ['sometimes', 'required', 'string'],
+            'city' => ['sometimes', 'required', 'string'],
+            'type' => ['sometimes', 'required', 'string']
         ];
     }
 }

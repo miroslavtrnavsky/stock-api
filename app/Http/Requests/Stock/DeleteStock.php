@@ -24,8 +24,6 @@ class DeleteStock extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //TODO
-        ];
+        return [];
     }
 }

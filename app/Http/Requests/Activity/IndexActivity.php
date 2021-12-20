@@ -1,11 +1,11 @@
 <?php
 
-namespace Http\Requests\Stock;
+namespace Http\Requests\Activity;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class IndexStock extends FormRequest
+class IndexActivity extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class IndexStock extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('stock.read');
+        return Gate::allows('activity.read');
     }
 
     /**
