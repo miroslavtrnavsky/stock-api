@@ -11,7 +11,7 @@ use Repositories\PackageRepository;
 class PackageController extends Controller
 {
     public function __construct(
-        private PackageRepository $packageRepository
+        private readonly PackageRepository $packageRepository
     ) { }
 
     public function index(): Collection

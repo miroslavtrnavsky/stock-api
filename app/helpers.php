@@ -1,10 +1,20 @@
 <?php
 
-if (!function_exists('enum_to_string')) {
-    function enum_to_string($cases): string
+if (! function_exists('enum_to_string')) {
+    function enum_to_array($cases): array
     {
-        $enumValues = collect($cases)->pluck('value');
+        return collect($cases)->pluck('value')->toArray();
 
-        return $enumValues->map(fn ($enum) => "'" . $enum . "'")->implode(', ');
+//        return $enumValues->map(fn ($value) => "'" . $value . "'")->implode(', ');
+    }
+}
+
+if(! function_exists('generate_numeric_code')) {
+    function generate_numeric_code($length): int
+    {
+        $nbDigits = $length;
+        $max = 10 ** $nbDigits - 1;
+
+        return strval(mt_rand(10 ** ($nbDigits - 1), $max));
     }
 }

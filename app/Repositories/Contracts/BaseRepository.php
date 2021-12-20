@@ -10,9 +10,10 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
+    protected Model|EloquentBuilder|QueryBuilder $model;
+
     public function __construct(
         private Container $app,
-        protected Model|EloquentBuilder|QueryBuilder $model
     ) {
         $this->model = $this->app->make($this->getModelClassName());
     }
@@ -49,7 +50,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $query->get($columns);
     }
 
-    public function find(int $id, array $columns = ['*']): Model
+    public function find(int $id, array $columns = ['*']): ?Model
     {
         return $this->getQueryBuilder()->find($id);
     }
