@@ -15,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ApiServiceInterface::class, PackageApiClient::class);
+        collect(config('api.fake_clients'))->each(fn (string $client) =>
+            $this->app->bind(ApiServiceInterface::class, $client)
+        );
     }
 
     /**
