@@ -14,7 +14,7 @@ class StoreStock extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->hasPermissionTo('stock.store', 'api');
+        return auth()->user()->hasPermissionTo('stock.create', 'api');
     }
 
     /**

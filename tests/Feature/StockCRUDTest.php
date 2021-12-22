@@ -2,12 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Enums\PackageStateEnum;
 use App\Events\Stock\CreateStockEvent;
 use App\Events\Stock\DeleteStockEvent;
 use App\Events\Stock\IndexStockEvent;
 use App\Events\Stock\UpdateStockEvent;
-use App\Models\Package;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
