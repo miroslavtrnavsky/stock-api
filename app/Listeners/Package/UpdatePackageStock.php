@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Package;
 
-use App\Events\Package\UpdateStockEvent;
+use App\Events\Package\UpdatePackageStockEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
 class UpdatePackageStock
@@ -10,10 +10,10 @@ class UpdatePackageStock
     /**
      * Handle the event.
      *
-     * @param  UpdateStockEvent  $event
+     * @param  UpdatePackageStockEvent  $event
      * @return void
      */
-    public function handle(UpdateStockEvent $event)
+    public function handle(UpdatePackageStockEvent $event)
     {
         app(ApiServiceInterface::class)->update(
             $event->url,

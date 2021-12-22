@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Package;
+namespace App\Http\Requests\Package;
 
 use App\Enums\PackageStateEnum;
 use Illuminate\Foundation\Http\FormRequest;

@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Package;
 
-use App\Events\Package\CreateStockEvent;
+use App\Events\Package\CreatePackageEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
 class CreatePackage
@@ -10,10 +10,10 @@ class CreatePackage
     /**
      * Handle the event.
      *
-     * @param  CreateStockEvent  $event
+     * @param  CreatePackageEvent  $event
      * @return void
      */
-    public function handle(CreateStockEvent $event)
+    public function handle(CreatePackageEvent $event)
     {
         app(ApiServiceInterface::class)->create($event->url, $event->data, $event->token);
     }

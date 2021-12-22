@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Package;
+namespace App\Http\Requests\Package;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;

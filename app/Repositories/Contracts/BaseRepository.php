@@ -57,6 +57,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
     public function create(array $attributes): Model
     {
+        \Log::info($attributes);
         return $this->model->create($attributes);
     }
 

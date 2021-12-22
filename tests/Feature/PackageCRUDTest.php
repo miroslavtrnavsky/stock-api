@@ -3,10 +3,10 @@
 namespace Tests\Feature;
 
 use App\Enums\PackageStateEnum;
-use App\Events\Package\CreateStockEvent;
-use App\Events\Package\DeleteStockEvent;
-use App\Events\Package\IndexStockEvent;
-use App\Events\Package\UpdateStockEvent;
+use App\Events\Package\CreatePackageEvent;
+use App\Events\Package\DeletePackageEvent;
+use App\Events\Package\IndexPackageEvent;
+use App\Events\Package\UpdatePackageStockEvent;
 use App\Events\Package\UpdatePackagePositionEvent;
 use App\Events\Package\UpdatePackageStateEvent;
 use App\Models\Package;
@@ -33,24 +33,30 @@ class PackageCRUDTest extends TestCase
     {
         Event::fake();
 
-        event(new IndexStockEvent(
+        event(new IndexPackageEvent(
             url('api/packages'),
             $this->token
         ));
 
-        Event::assertDispatched(IndexStockEvent::class);
+        Event::assertDispatched(IndexPackageEvent::class);
     }
 
     public function test_create_package()
     {
-        event(new CreateStockEvent(url('api/packages'), [
+        $data = [
             'stock_id' => 1,
             'code' => 12353,
             'position' => 'First shelf',
             'state' => PackageStateEnum::NEW->value
-        ], $this->token));
+        ];
 
-        $this->assertDatabaseCount(Package::class, 4);
+        event(new CreatePackageEvent(
+            url('api/packages'),
+            $data ,
+            $this->token
+        ));
+
+        $this->assertDatabaseHas(Package::class, $data);
     }
 
     public function test_update_package_state()
@@ -89,7 +95,7 @@ class PackageCRUDTest extends TestCase
     {
         $package = Package::query()->find(1);
 
-        event(new UpdateStockEvent(
+        event(new UpdatePackageStockEvent(
             url('api/packages'),
             $package->id,
             Stock::query()->find(2)->id,
@@ -110,7 +116,7 @@ class PackageCRUDTest extends TestCase
             'state' => PackageStateEnum::STORED->value
         ]);
 
-        event(new DeleteStockEvent(
+        event(new DeletePackageEvent(
             url('api/packages'),
             $package->id,
             $this->token

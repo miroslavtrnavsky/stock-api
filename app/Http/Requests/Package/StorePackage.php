@@ -1,9 +1,8 @@
 <?php
 
-namespace Http\Requests\Package;
+namespace App\Http\Requests\Package;
 
 use App\Enums\PackageStateEnum;
-use http\Client\Curl\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Enum;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Stock;
+namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +14,8 @@ class IndexStock extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('stock.read');
+//        return Gate::allows('stock.read');
+        return true;
     }
 
     /**

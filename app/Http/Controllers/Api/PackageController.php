@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Actions\NotifyPackageCreated;
 use App\Http\Controllers\Controller;
-use Http\Requests\Package\DeletePackage;
-use Http\Requests\Package\IndexPackage;
-use Http\Requests\Package\StorePackage;
-use Http\Requests\Package\UpdatePackage;
+use App\Http\Requests\Package\DeletePackage;
+use App\Http\Requests\Package\IndexPackage;
+use App\Http\Requests\Package\StorePackage;
+use App\Http\Requests\Package\UpdatePackage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\PackageRepository;

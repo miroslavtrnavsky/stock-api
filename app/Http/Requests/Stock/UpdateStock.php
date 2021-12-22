@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Stock;
+namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +14,8 @@ class UpdateStock extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('stock.update');
+//        return Gate::allows('stock.update');
+        return true;
     }
 
     /**
@@ -24,6 +25,7 @@ class UpdateStock extends FormRequest
      */
     public function rules(): array
     {
+        \Log::info($this->all());
         return [
             'name' => ['sometimes', 'required', 'string'],
             'street' => ['sometimes', 'required', 'string'],

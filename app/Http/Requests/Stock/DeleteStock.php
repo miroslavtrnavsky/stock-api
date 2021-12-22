@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Stock;
+namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +14,8 @@ class DeleteStock extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('stock.delete');
+//        return Gate::allows('stock.delete');
+        return true;
     }
 
     /**
