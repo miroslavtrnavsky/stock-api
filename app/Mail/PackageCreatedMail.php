@@ -30,6 +30,6 @@ class PackageCreatedMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mail.package-created', ['user' => $this->user, 'package' => $this->package]);
     }
 }

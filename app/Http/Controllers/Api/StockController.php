@@ -23,7 +23,6 @@ class StockController extends Controller
 
     public function store(StoreStock $request): Model
     {
-        \Log::info($request->validated());
         return $this->stockRepository->create($request->validated());
     }
 

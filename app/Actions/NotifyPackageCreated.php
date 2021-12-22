@@ -14,9 +14,10 @@ class NotifyPackageCreated
      */
     public function execute(Package $package): void
     {
-        /** @var User $warehouseman */
-        $warehouseman = User::query()->roles()->where('name', UserRoleEnum::WAREHOUSEMAN->value)->first();
+        $warehousemans = User::query()->onlyWarehousemans()->get();
 
-        $warehouseman->notify(new PackageCreated($warehouseman, $package));
+        $warehousemans->each(fn (User $warehouseman) =>
+            $warehouseman->notify(new PackageCreated($warehouseman, $package))
+        );
     }
 }

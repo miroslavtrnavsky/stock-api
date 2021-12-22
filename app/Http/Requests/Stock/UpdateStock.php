@@ -25,7 +25,6 @@ class UpdateStock extends FormRequest
      */
     public function rules(): array
     {
-        \Log::info($this->all());
         return [
             'name' => ['sometimes', 'required', 'string'],
             'street' => ['sometimes', 'required', 'string'],
