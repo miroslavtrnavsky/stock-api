@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Listeners\Package;
+namespace App\Listeners\Stock;
 
-use App\Events\Package\CreateStockEvent;
+use App\Events\Stock\CreateStockEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
-class CreatePackage
+class CreateStock
 {
     /**
      * Handle the event.

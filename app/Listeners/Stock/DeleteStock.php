@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Listeners\Package;
+namespace App\Listeners\Stock;
 
-use App\Events\Package\DeleteStockEvent;
+use App\Events\Stock\DeleteStockEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
-class DeletePackage
+class DeleteStock
 {
     /**
      * Handle the event.

@@ -3,10 +3,10 @@
 namespace Tests\Feature;
 
 use App\Enums\PackageStateEnum;
-use App\Events\Package\CreatePackageEvent;
-use App\Events\Package\DeletePackageEvent;
-use App\Events\Package\IndexPackageEvent;
-use App\Events\Package\UpdatePackageStockEvent;
+use App\Events\Package\CreateStockEvent;
+use App\Events\Package\DeleteStockEvent;
+use App\Events\Package\IndexStockEvent;
+use App\Events\Package\UpdateStockEvent;
 use App\Events\Package\UpdatePackagePositionEvent;
 use App\Events\Package\UpdatePackageStateEvent;
 use App\Models\Package;
@@ -33,17 +33,17 @@ class PackageCRUDTest extends TestCase
     {
         Event::fake();
 
-        event(new IndexPackageEvent(
+        event(new IndexStockEvent(
             url('api/packages'),
             $this->token
         ));
 
-        Event::assertDispatched(IndexPackageEvent::class);
+        Event::assertDispatched(IndexStockEvent::class);
     }
 
     public function test_create_package()
     {
-        event(new CreatePackageEvent(url('api/packages'), [
+        event(new CreateStockEvent(url('api/packages'), [
             'stock_id' => 1,
             'code' => 12353,
             'position' => 'First shelf',
@@ -89,7 +89,7 @@ class PackageCRUDTest extends TestCase
     {
         $package = Package::query()->find(1);
 
-        event(new UpdatePackageStockEvent(
+        event(new UpdateStockEvent(
             url('api/packages'),
             $package->id,
             Stock::query()->find(2)->id,
@@ -110,7 +110,7 @@ class PackageCRUDTest extends TestCase
             'state' => PackageStateEnum::STORED->value
         ]);
 
-        event(new DeletePackageEvent(
+        event(new DeleteStockEvent(
             url('api/packages'),
             $package->id,
             $this->token

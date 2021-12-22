@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Listeners\Package;
+namespace App\Listeners\Stock;
 
-use App\Events\Package\UpdateStockEvent;
+use App\Events\Stock\UpdateStockEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
-class UpdatePackageStock
+class UpdateStock
 {
     /**
      * Handle the event.
@@ -18,7 +18,7 @@ class UpdatePackageStock
         app(ApiServiceInterface::class)->update(
             $event->url,
             $event->id,
-            ['stock_id' => $event->stockId],
+            $event->data,
             $event->token
         );
     }

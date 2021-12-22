@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Listeners\Package;
+namespace App\Listeners\Stock;
 
-use App\Events\Package\IndexStockEvent;
+use App\Events\Stock\IndexStockEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
-class IndexPackage
+class IndexStock
 {
     /**
      * Handle the event.
