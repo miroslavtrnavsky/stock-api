@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Auth;
+namespace App\Http\Requests\Auth;
 
 use App\Enums\UserRoleEnum;
 use Illuminate\Foundation\Http\FormRequest;
@@ -18,7 +18,7 @@ class RegisterUser extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('user.create');
+        return auth()->user()->hasPermissionTo('user.create', 'api');
     }
 
     /**

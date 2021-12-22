@@ -14,9 +14,7 @@ class DeletePackage extends FormRequest
      */
     public function authorize(): bool
     {
-//        return Gate::allows('package.delete');        //TODO:
-
-        return true;
+        return auth()->user()->hasPermissionTo('package.delete', 'api');
     }
 
     /**

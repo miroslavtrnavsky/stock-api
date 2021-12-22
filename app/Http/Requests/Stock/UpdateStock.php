@@ -14,8 +14,7 @@ class UpdateStock extends FormRequest
      */
     public function authorize(): bool
     {
-//        return Gate::allows('stock.update');
-        return true;
+        return auth()->user()->hasPermissionTo('stock.update', 'api');
     }
 
     /**

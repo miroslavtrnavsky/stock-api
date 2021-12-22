@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Http\Requests\Auth\ChangePassword;
-use Http\Requests\Auth\LoginUser;
-use Http\Requests\Auth\RegisterUser;
+use App\Http\Requests\Auth\ChangePassword;
+use App\Http\Requests\Auth\LoginUser;
+use App\Http\Requests\Auth\RegisterUser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\UserRepository;
@@ -17,6 +17,10 @@ class AuthController extends Controller
         private readonly UserRepository $userRepository
     ) { }
 
+    /**
+     * @param RegisterUser $request
+     * @return JsonResponse
+     */
     public function register(RegisterUser $request): JsonResponse
     {
         /** @var User $user */
@@ -27,6 +31,10 @@ class AuthController extends Controller
         ], 201);
     }
 
+    /**
+     * @param LoginUser $request
+     * @return JsonResponse
+     */
     public function login(LoginUser $request): JsonResponse
     {
         $data = $request->getModifiedData();
@@ -47,6 +55,9 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function logout(): JsonResponse
     {
         auth()->user()?->tokens()->delete();
@@ -56,6 +67,10 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * @param ChangePassword $request
+     * @return JsonResponse
+     */
     public function changePassword(ChangePassword $request): JsonResponse
     {
         $data = $request->getModifiedData();

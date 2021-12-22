@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
 //        Gate::before(function ($ability) {
-//            return auth()->user()->hasPermissionTo($ability, 'sanctum');
+//            return auth()->user()->hasPermissionTo($ability, 'api');
 //        });
     }
 }

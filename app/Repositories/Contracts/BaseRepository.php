@@ -30,6 +30,13 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model;
     }
 
+    /**
+     * @param array|string[] $columns
+     * @param string|null $orderBy
+     * @param string $order
+     * @param int|null $limit
+     * @return Collection
+     */
     public function getAll(
         array $columns = ['*'],
         string $orderBy = null,
@@ -50,21 +57,39 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $query->get($columns);
     }
 
+    /**
+     * @param int $id
+     * @param array|string[] $columns
+     * @return Model|null
+     */
     public function find(int $id, array $columns = ['*']): ?Model
     {
         return $this->getQueryBuilder()->find($id);
     }
 
+    /**
+     * @param array $attributes
+     * @return Model
+     */
     public function create(array $attributes): Model
     {
         return $this->model->create($attributes);
     }
 
+    /**
+     * @param int $id
+     * @param array $attributes
+     * @return Model
+     */
     public function update(int $id, array $attributes = []): Model
     {
         return $this->model->find($id)->update($attributes);
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delete(int $id): bool
     {
         return $this->model->destroy($id);

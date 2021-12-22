@@ -14,8 +14,7 @@ class IndexStock extends FormRequest
      */
     public function authorize(): bool
     {
-//        return Gate::allows('stock.read');
-        return true;
+        return auth()->user()->hasPermissionTo('stock.read', 'api');
     }
 
     /**

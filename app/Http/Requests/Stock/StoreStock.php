@@ -14,8 +14,7 @@ class StoreStock extends FormRequest
      */
     public function authorize(): bool
     {
-//        return Gate::allows('stock.store');
-        return true;
+        return auth()->user()->hasPermissionTo('stock.store', 'api');
     }
 
     /**
