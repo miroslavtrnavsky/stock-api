@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Package;
 
-use App\Events\IndexPackageEvent;
+use App\Events\Package\IndexPackageEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
 class IndexPackage
@@ -15,6 +15,6 @@ class IndexPackage
      */
     public function handle(IndexPackageEvent $event)
     {
-        app(ApiServiceInterface::class)->create($event->url, $event->toke);
+        app(ApiServiceInterface::class)->create($event->url, $event->token);
     }
 }

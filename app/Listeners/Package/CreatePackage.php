@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Package;
 
-use App\Events\CreatePackageEvent;
+use App\Events\Package\CreatePackageEvent;
 use App\Services\Contracts\ApiServiceInterface;
-use App\Services\PackageApiClient;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class CreatePackage
 {

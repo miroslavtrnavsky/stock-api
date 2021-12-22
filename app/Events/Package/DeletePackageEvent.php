@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Package;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CreatePackageEvent
+class DeletePackageEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -21,7 +17,7 @@ class CreatePackageEvent
      */
     public function __construct(
         public readonly string $url,
-        public readonly array $data,
+        public readonly int $id,
         public readonly string $token
     ) { }
 }

@@ -2,14 +2,18 @@
 
 namespace App\Providers;
 
-use App\Events\CreatePackageEvent;
-use App\Events\UpdatePackagePositionEvent;
-use App\Events\UpdatePackageStateEvent;
-use App\Events\UpdatePackageStockEvent;
-use App\Listeners\CreatePackage;
-use App\Listeners\UpdatePackagePosition;
-use App\Listeners\UpdatePackageState;
-use App\Listeners\UpdatePackageStock;
+use App\Events\Package\CreatePackageEvent;
+use App\Events\Package\DeletePackageEvent;
+use App\Events\Package\IndexPackageEvent;
+use App\Events\Package\UpdatePackagePositionEvent;
+use App\Events\Package\UpdatePackageStateEvent;
+use App\Events\Package\UpdatePackageStockEvent;
+use App\Listeners\Package\CreatePackage;
+use App\Listeners\Package\DeletePackage;
+use App\Listeners\Package\IndexPackage;
+use App\Listeners\Package\UpdatePackagePosition;
+use App\Listeners\Package\UpdatePackageState;
+use App\Listeners\Package\UpdatePackageStock;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        IndexPackageEvent::class => [
+            IndexPackage::class
+        ],
         CreatePackageEvent::class => [
             CreatePackage::class
         ],
@@ -37,6 +44,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UpdatePackageStockEvent::class => [
             UpdatePackageStock::class
+        ],
+        DeletePackageEvent::class => [
+            DeletePackage::class
         ]
     ];
 

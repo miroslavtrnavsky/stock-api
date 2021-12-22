@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Package;
 
-use App\Events\UpdatePackagePositionEvent;
+use App\Events\Package\UpdatePackageStockEvent;
 use App\Services\Contracts\ApiServiceInterface;
 
-class UpdatePackagePosition
+class UpdatePackageStock
 {
     /**
      * Handle the event.
      *
-     * @param  UpdatePackagePositionEvent  $event
+     * @param  UpdatePackageStockEvent  $event
      * @return void
      */
-    public function handle(UpdatePackagePositionEvent $event)
+    public function handle(UpdatePackageStockEvent $event)
     {
         app(ApiServiceInterface::class)->update(
             $event->url,
             $event->id,
-            ['position' => $event->position],
+            ['stock_id' => $event->stockId],
             $event->token
         );
     }

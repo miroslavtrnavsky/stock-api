@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Package;
 
-use App\Events\UpdatePackageStateEvent;
+use App\Events\Package\UpdatePackageStateEvent;
 use App\Services\Contracts\ApiServiceInterface;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class UpdatePackageState
 {
