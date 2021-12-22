@@ -38,29 +38,35 @@ class PackageCRUDTest extends TestCase
         $this->assertDatabaseCount(Package::class, 4);
     }
 
-//    public function test_update_package_state()
-//    {
-//        Event::fake();
-//
-//        event(new UpdatePackageStateEvent(
-//            url('api/packages'),
-//            Package::query()->find(1)->id,
-//            PackageStateEnum::WAITING_FOR_DELIVERY
-//        ));
-//
-//        Event::assertDispatched(UpdatePackageStateEvent::class);
-//    }
-//
-//    public function test_update_package_position()
-//    {
-//        Event::fake();
-//
-//        event(new UpdatePackagePositionEvent(
-//            url('api/packages'),
-//            Package::query()->find(1)->id,
-//            'Second shelf'
-//        ));
-//
-//        Event::assertDispatched(UpdatePackagePositionEvent::class);
-//    }
+    public function test_update_package_state()
+    {
+        $package = Package::query()->find(1);
+
+        event(new UpdatePackageStateEvent(
+            url('api/packages'),
+            $package->id,
+            PackageStateEnum::WAITING_FOR_DELIVERY,
+            $this->token
+        ));
+
+        $updated = $package->refresh();
+
+        $this->assertEquals(PackageStateEnum::WAITING_FOR_DELIVERY->value, $updated->state);
+    }
+
+    public function test_update_package_position()
+    {
+        $package = Package::query()->find(1);
+
+        event(new UpdatePackagePositionEvent(
+            url('api/packages'),
+            $package->id,
+            'Second shelf',
+            $this->token
+        ));
+
+        $updated = $package->refresh();
+
+        $this->assertEquals('Second shelf', $updated->position);
+    }
 }

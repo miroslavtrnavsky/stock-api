@@ -15,7 +15,6 @@ class PackageApiClient extends ApiService implements ApiServiceInterface
      * @param int $id
      * @param string $newPosition
      * @return ResponseInterface
-     * @throws GuzzleException
      */
     public function updatePackagePosition(string $url, int $id, string $newPosition): ResponseInterface
     {

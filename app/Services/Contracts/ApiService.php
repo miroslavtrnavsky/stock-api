@@ -27,9 +27,7 @@ abstract class ApiService
      */
     protected function putRequest(string $url, array $data, string $token): PromiseInterface|Response
     {
-        return Http::withToken($token)->put($url, [
-            'form_params' => $data
-        ]);
+        return Http::withToken($token)->put($url, $data);
     }
 
     /**

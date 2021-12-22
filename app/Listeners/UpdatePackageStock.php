@@ -15,6 +15,11 @@ class UpdatePackageStock
      */
     public function handle(UpdatePackageStockEvent $event)
     {
-        app(ApiServiceInterface::class)->update($event->url, $event->id, $event->stockId, $event->token);
+        app(ApiServiceInterface::class)->update(
+            $event->url,
+            $event->id,
+            ['stock_id' => $event->stockId],
+            $event->token
+        );
     }
 }

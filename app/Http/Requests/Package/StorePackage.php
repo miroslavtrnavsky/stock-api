@@ -3,6 +3,7 @@
 namespace Http\Requests\Package;
 
 use App\Enums\PackageStateEnum;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Enum;
@@ -16,7 +17,8 @@ class StorePackage extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('package.create');
+//        Gate::authorize('package.create') //TODO
+        return true;
     }
 
     /**
