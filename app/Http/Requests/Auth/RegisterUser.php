@@ -33,7 +33,6 @@ class RegisterUser extends FormRequest
             'email' => ['required', 'email', Rule::unique('users', 'email')->whereNull('deleted_at')],
             'code' => ['required', 'numeric', Rule::unique('users', 'code')->whereNull('deleted_at')],
             'password' => ['required', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string'],
-            'role' => ['required', new Enum(UserRoleEnum::class)]
         ];
     }
 
