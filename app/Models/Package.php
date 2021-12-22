@@ -6,7 +6,7 @@ use App\Enums\PackageStateEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notification;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
@@ -15,6 +15,11 @@ class Package extends Model implements Auditable
     use AuditableTrait;
 
     protected $guarded = ['id'];
+
+    public function stock(): BelongsTo
+    {
+        return $this->belongsTo(Stock::class);
+    }
 
     public function scopeWaitingOverDay(Builder $query): Builder
     {
@@ -27,7 +32,7 @@ class Package extends Model implements Auditable
                                       ->where('updated_at' < Carbon::now()->subDay())
                                       ->get();
                          });
-                     })
-                    ->whereNotIn('code', );
+                     });
+//                    ->whereNotIn('code' );
     }
 }
