@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Package;
+namespace App\Http\Requests\Package;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +14,9 @@ class IndexPackage extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('package.read');
+//        return Gate::allows('package.read');      //TODO
+
+        return true;
     }
 
     /**

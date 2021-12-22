@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -9,7 +9,7 @@ use Http\Requests\Auth\LoginUser;
 use Http\Requests\Auth\RegisterUser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
-use Repositories\UserRepository;
+use App\Repositories\UserRepository;
 
 class AuthController extends Controller
 {
@@ -22,11 +22,8 @@ class AuthController extends Controller
         /** @var User $user */
         $user = $this->userRepository->create($request->getModifiedData());
 
-//        $token = $user->createToken('authtoken')->plainTextToken;
-
         return response()->json([
             'user' => $user,
-//            'token' => $token
         ], 201);
     }
 

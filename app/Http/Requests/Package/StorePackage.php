@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Package;
+namespace App\Http\Requests\Package;
 
 use App\Enums\PackageStateEnum;
 use Illuminate\Foundation\Http\FormRequest;
@@ -16,7 +16,8 @@ class StorePackage extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('package.create');
+//        Gate::authorize('package.create') //TODO
+        return true;
     }
 
     /**

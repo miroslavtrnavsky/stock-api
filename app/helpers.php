@@ -18,3 +18,13 @@ if(! function_exists('generate_numeric_code')) {
         return strval(mt_rand(10 ** ($nbDigits - 1), $max));
     }
 }
+
+function activeGuard() {
+    foreach(array_keys(config('auth.guards')) as $guard) {
+        if(auth()->guard($guard)->check()) {
+            return $guard;
+        }
+    }
+
+    return '.';
+}

@@ -2,16 +2,16 @@
 
 namespace App\Services\Contracts;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\Response;
 
 interface ApiServiceInterface
 {
-    function create(array $data): Model;
+    public function getAll(string $url, string $token): PromiseInterface|Response;
 
-    public  function update(int $id, array $data): Model;
+    public function create(string $url, array $data, string $token): PromiseInterface|Response;
 
-    public function delete($id): bool;
+    public function update(string $url, int $id, array $data, string $token): PromiseInterface|Response;
 
-    public function getAll($filter): Collection;
+    public function delete(string $url, int $id, string $token): PromiseInterface|Response;
 }

@@ -1,15 +1,16 @@
 <?php
 
-namespace Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
+use App\Actions\NotifyPackageCreated;
 use App\Http\Controllers\Controller;
-use Http\Requests\Package\DeletePackage;
-use Http\Requests\Package\IndexPackage;
-use Http\Requests\Package\StorePackage;
-use Http\Requests\Package\UpdatePackage;
+use App\Http\Requests\Package\DeletePackage;
+use App\Http\Requests\Package\IndexPackage;
+use App\Http\Requests\Package\StorePackage;
+use App\Http\Requests\Package\UpdatePackage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Repositories\PackageRepository;
+use App\Repositories\PackageRepository;
 
 class PackageController extends Controller
 {
@@ -19,25 +20,31 @@ class PackageController extends Controller
 
     public function index(IndexPackage $request): Collection
     {
-        return $this->packageRepository->getAll();
+        return $this->packageRepository->getAll(['*'], 'state');
     }
 
     public function store(StorePackage $request): Model
     {
-        return $this->packageRepository->create($request->all());
+        $package = $this->packageRepository->create($request->validated());
+
+        if ($package) {
+            app(NotifyPackageCreated::class)->execute($package);
+        }
+
+        return $package;
     }
 
     public function update(UpdatePackage $request, int $id): Model
     {
-        return $this->packageRepository->update($id, $request->all());
+        return $this->packageRepository->update($id, $request->validated());
     }
 
-    public function find(int $id): Model
+    public function show(int $id): Model
     {
         return $this->packageRepository->find($id);
     }
 
-    public function delete(DeletePackage $request, int $id): bool
+    public function destroy(DeletePackage $request, int $id): bool
     {
         return $this->packageRepository->delete($id);
     }

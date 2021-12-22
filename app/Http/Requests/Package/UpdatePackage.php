@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Package;
+namespace App\Http\Requests\Package;
 
 use App\Enums\PackageStateEnum;
 use Illuminate\Foundation\Http\FormRequest;
@@ -16,7 +16,8 @@ class UpdatePackage extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('package.update');
+//        return Gate::allows('package.update');        //TODO
+        return true;
     }
 
     /**
