@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Requests\Auth;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -15,8 +15,7 @@ class ChangePassword extends FormRequest
      */
     public function authorize(): bool
     {
-
-        return Gate::allows('user.update') || auth()->user()->id === $this->get('id');
+        return auth()->user()->hasPermissionTo('user.update', 'api') || auth()->user()->id === $this->get('id');
     }
 
     /**

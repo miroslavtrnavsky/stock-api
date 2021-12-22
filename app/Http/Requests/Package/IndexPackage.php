@@ -14,9 +14,7 @@ class IndexPackage extends FormRequest
      */
     public function authorize(): bool
     {
-//        return Gate::allows('package.read');      //TODO
-
-        return true;
+        return auth()->user()->hasPermissionTo('package.read', 'api');
     }
 
     /**

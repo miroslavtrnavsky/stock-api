@@ -16,26 +16,47 @@ class StockController extends Controller
         private readonly StockRepository $stockRepository
     ) { }
 
+    /**
+     * @return Collection
+     */
     public function index(): Collection
     {
         return $this->stockRepository->getAll();
     }
 
+    /**
+     * @param StoreStock $request
+     * @return Model
+     */
     public function store(StoreStock $request): Model
     {
         return $this->stockRepository->create($request->validated());
     }
 
+    /**
+     * @param UpdateStock $updateStock
+     * @param int $id
+     * @return Model
+     */
     public function update(UpdateStock $updateStock, int $id): Model
     {
         return $this->stockRepository->update($id, $updateStock->validated());
     }
 
+    /**
+     * @param int $id
+     * @return Model
+     */
     public function show(int $id): Model
     {
         return $this->stockRepository->find($id);
     }
 
+    /**
+     * @param DeleteStock $deleteStock
+     * @param int $id
+     * @return bool
+     */
     public function destroy(DeleteStock $deleteStock, int $id): bool
     {
         return $this->stockRepository->delete($id);

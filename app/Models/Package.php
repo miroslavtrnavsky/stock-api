@@ -23,7 +23,6 @@ class Package extends Model implements Auditable
 
     public function scopeWaitingOverDay(Builder $query): Builder
     {
-        //TODO: finish conditions
         return $query->where('state', PackageStateEnum::WAITING_FOR_PICK_UP->value)
                      ->whereHas('audits', function ($q) {
                          $q->whereIn('audits.id', function (Builder $subQuery) {
@@ -33,6 +32,5 @@ class Package extends Model implements Auditable
                                       ->get();
                          });
                      });
-//                    ->whereNotIn('code' );
     }
 }

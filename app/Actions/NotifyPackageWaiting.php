@@ -11,8 +11,7 @@ class NotifyPackageWaiting
 {
     public function execute(Package $package): void
     {
-        /** @var User $warehouseman */
-        $warehousemans = User::query()->roles()->where('name', UserRoleEnum::WAREHOUSEMAN->value)->get();
+        $warehousemans = User::query()->onlyWarehousemans()->get();
 
         $warehousemans->each(fn (User $warehouseman) =>
             $warehouseman->notify(new PackageCreated($warehouseman, $package))

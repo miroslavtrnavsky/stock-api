@@ -20,7 +20,7 @@ class CheckPackageStates extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Command that checks package states';
 
     /**
      * Create a new command instance.

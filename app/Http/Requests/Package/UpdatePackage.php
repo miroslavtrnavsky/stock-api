@@ -16,8 +16,7 @@ class UpdatePackage extends FormRequest
      */
     public function authorize(): bool
     {
-//        return Gate::allows('package.update');        //TODO
-        return true;
+        return auth()->user()->hasPermissionTo('package.update', 'api');
     }
 
     /**

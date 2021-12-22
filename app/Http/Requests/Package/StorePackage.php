@@ -16,8 +16,7 @@ class StorePackage extends FormRequest
      */
     public function authorize(): bool
     {
-//        Gate::authorize('package.create') //TODO
-        return true;
+        return auth()->user()->hasPermissionTo('package.create', 'api');
     }
 
     /**

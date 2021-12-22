@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\PackageController;
 use App\Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         'stocks' => StockController::class,
         'packages' => PackageController::class,
     ]);
+
+    Route::get('/dashboard', [DashboardController::class, 'getPackagesByState']);
+    Route::get('/activity', [DashboardController::class, 'getActivities']);
+
 });
